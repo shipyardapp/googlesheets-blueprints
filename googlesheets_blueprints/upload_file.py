@@ -280,7 +280,7 @@ def main():
         file_name=source_file_name)
     file_name = clean_folder_name(args.file_name)
     tab_name = args.tab_name
-    starting_cell = args.starting_cell
+    starting_cell = 'A1' if not args.starting_cell else args.starting_cell
     drive = args.drive
 
     if not os.path.isfile(source_full_path):
