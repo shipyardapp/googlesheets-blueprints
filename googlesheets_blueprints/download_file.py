@@ -15,10 +15,16 @@ SCOPES = ['https://spreadsheets.google.com/feeds',
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--source-file-name', dest='file_name', default='',
-                        required=True)
-    parser.add_argument('--tab-name', dest='tab_name',
-                        default=None, required=True)
+    parser.add_argument(
+        '--source-file-name',
+        dest='file_name',
+        default='',
+        required=True)
+    parser.add_argument(
+        '--tab-name',
+        dest='tab_name',
+        default=None,
+        required=False)
     parser.add_argument(
         '--destination-file-name',
         dest='destination_file_name',
@@ -248,7 +254,7 @@ def main():
     tmp_file = set_environment_variables(args)
     file_name = clean_folder_name(args.file_name)
     tab_name = args.tab_name
-    cell_range = args.cell_range
+    cell_range = 'A1:ZZZ5000000' if not args.cell_range else args.cell_range
     drive = args.drive
 
     destination_folder_name = clean_folder_name(args.destination_folder_name)
