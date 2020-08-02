@@ -151,8 +151,8 @@ def download_google_sheet_file(
                                      tab_name=tab_name):
                 cell_range = f'{tab_name}!{cell_range}'
             else:
-                print(f'Sheet {tab_name} could not be found')
-                return
+                print(f'The tab {tab_name} could not be found')
+                raise SystemExit(1)
         sheet = service.spreadsheets().values().get(
             spreadsheetId=spreadsheet_id,
             range=cell_range).execute()
