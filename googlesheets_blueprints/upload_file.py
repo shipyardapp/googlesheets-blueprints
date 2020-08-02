@@ -285,7 +285,7 @@ def main():
 
     if not os.path.isfile(source_full_path):
         print(f'{source_full_path} does not exist')
-        return
+        raise SystemExit(1)
 
     if tmp_file:
         service, drive_service = get_service(credentials=tmp_file)
@@ -297,7 +297,7 @@ def main():
         drive_service=drive_service, file_name=file_name, drive=drive)
     if not spreadsheet_id:
         print(f'The spreadsheet {file_name} does not exist')
-        return
+        raise SystemExit(1)
 
     # check if workbook exists in the spreadsheet
     upload_google_sheets_file(service=service, file_name=file_name,
