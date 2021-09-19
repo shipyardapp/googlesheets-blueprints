@@ -271,8 +271,11 @@ def main():
     spreadsheet_id = get_spreadsheet_id_by_name(
         drive_service=drive_service, file_name=file_name, drive=drive)
     if not spreadsheet_id:
-        print(f'Sheet {file_name} does not exist')
-        raise SystemExit(1)
+        if len(file_name) >= 44:
+            spreadsheet_id = file_name
+        else:
+            print(f'Sheet {file_name} does not exist')
+            raise SystemExit(1)
 
     if not args.destination_file_name:
         args.destination_file_name = f'{file_name} - {tab_name}.csv'
